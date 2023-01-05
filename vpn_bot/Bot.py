@@ -21,8 +21,8 @@ bot=Bot(config.bot_token, parse_mode=types.ParseMode.HTML)
 dp=Dispatcher(bot, storage=storage)
 
 lolz = lolzapi.LolzteamApi(config.lolz_api[0], config.lolz_api[1])
-crystal_pay = CrystalPay(config.crystal_pay[0],config.crystal_pay[1])
-p2p = AioQiwiP2P(auth_key=config.qiwi_key)
+# crystal_pay = CrystalPay(config.crystal_pay[0],config.crystal_pay[1])
+#p2p = AioQiwiP2P(auth_key=config.qiwi_key)
 
 db.create_tables()
 misc.clear()
@@ -106,7 +106,7 @@ async def close_update(call: types.CallbackQuery, state: FSMContext):
             await call.message.answer("👍<b> Разбанил</b>")
             await bot.send_message(raw[1], "<b>😘 Ты был разблокирован</b>")
         else:
-            await call.message.answer("❕ <b>Этот пользователь не забанен</b>")
+            await call.message.answer("<b>Этот пользователь не забанен</b>")
     elif "promo" in call.data:
         raw = call.data.split("|")
         promo_info = await db.get_promo_info(raw[1])
