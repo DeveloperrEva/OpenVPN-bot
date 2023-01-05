@@ -269,7 +269,7 @@ async def close_update(call: types.CallbackQuery, state: FSMContext):
                     await call.message.answer("✅Успешно, ожидайте генерации конфига.")
                     new_bal = balance - summ
                     await db.write_balance(new_bal, call.from_user.id)
-                    file=misc.generate_config(call.from_user.id, period, loc).split("/")[2]
+                    file=misc.generate_config(call.from_user.id, period, loc)
                     otzv = types.InlineKeyboardMarkup()
                     otzv.add(types.InlineKeyboardButton("Написать отзыв", url=config.lolz_theme))
                     await call.message.answer_document(open(file, "rb"), caption="✅Успешно\nПриветствую, дорогой покупатель! Если вы читаете эту инструкцию то вы однозначно заинтересовались нашим товаром.\n\n<i>Инструкция сделана для людей которые не знают как использовать конфигурации для клиента OpenVpn.</i>\n1)Скачайте клиент OpenVpn - https://openvpn.net/community-downloads/\n2)Установите клиент OpenVpn\n3)Нажмите на ваш трей (стрелочка, в правом нижнем углу), выберете значек OpenVpn, далее пункт Импорт - импорт файла конфигурации, после чего кликните дважды на файл который только что купили.\nПосле чего нажмите подключится.\nBingo!, впн успешно настроен и работает!",reply_markup=otzv)

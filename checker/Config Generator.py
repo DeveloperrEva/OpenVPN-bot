@@ -17,7 +17,7 @@ def create_client():
     now_d=datetime.datetime.now()
     name=randomize(args.nick)
     days=args.days
-    db = sqlite.connect('checker/base.db')
+    db = sqlite.connect('~/openvpn-bot/checker/base.db')
     cur = db.cursor()
     d=str(now_d.year)[-2:]+"-"+str(now_d.month)+"-"+str(now_d.day)
     cur.execute(f"INSERT INTO clients (s_date, name, days) VALUES ('{d}', '{name}', {days})")

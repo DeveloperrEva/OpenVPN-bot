@@ -42,14 +42,14 @@ def generate_api_key():
 
 #Генерация конфига
 def generate_config(name: str, days: str, server_data: list):
-    host = server_data[2]
-    user = server_data[3]
-    secret = server_data[4]
+    host = '185.255.132.20'
+    user = 'deveva'
+    secret = '2635'
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=host, username=user, password=secret, port=22)
-    stdin, stdout, stderr = client.exec_command("python3 'checker/Config Generator.py' "+str(name)+" "+str(days))
-    data = (stdout.read() + stderr.read()).decode().split("\n")[4]
+    stdin, stdout, stderr = client.exec_command("python3 '~/openvpn-bot/checker/Config Generator.py' "+str(name)+" "+str(days))
+    data = (stdout.read() + stderr.read()).decode()
     scp = SCPClient(client.get_transport())
     scp.get(data)
     client.close()
