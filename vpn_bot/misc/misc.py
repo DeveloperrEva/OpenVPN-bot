@@ -42,9 +42,9 @@ def generate_api_key():
 
 #Генерация конфига
 def generate_config(name: str, days: str, server_data: list):
-    host = '185.255.132.20'
+    host = ''
     user = 'deveva'
-    secret = '2635'
+    secret = ''
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=host, username=user, password=secret, port=22)
